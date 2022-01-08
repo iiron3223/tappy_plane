@@ -45,10 +45,8 @@ class Game:
         for event in pg.event.get():
             # check for closing window 
             if event.type == pg.QUIT:
-                if self.playing:
-                    self.playing = False
-                self.running = False
-    
+                self.quit()
+                
     def draw(self):
         # Game loop - draw
         self.screen.fill(BGCOLOR)
@@ -57,15 +55,12 @@ class Game:
         # double bufffering = after drawing everything flip the display
         pg.display.flip()
         
-        
     def draw_grid(self):
         """Draw grid using TILESIZE on the screen."""
         for x in range(0, WIDTH, TILESIZE):
             pg.draw.line(self.screen, LIGHTGREY, (x, 0), (x, HEIGHT), 1)
         for y in range(0, HEIGHT, TILESIZE):
             pg.draw.line(self.screen, LIGHTGREY, (0, y), (WIDTH, y), 1)
-            
-            
             
     def show_start_screen(self):
         # Game splash/start screen
@@ -74,6 +69,11 @@ class Game:
     def show_go_screen(self):
         # Game over/continue
         pass
+    
+    def quit(self):
+        if self.playing:
+            self.playing = False
+        self.running = False
     
 if __name__ == '__main__':
     g = Game()
