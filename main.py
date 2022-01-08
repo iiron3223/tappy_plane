@@ -4,7 +4,7 @@ import pygame as pg
 import random
 from os import path
 from settings import *
-
+from sprites import *
 
 class Game:
     def __init__(self) -> None:
@@ -24,6 +24,7 @@ class Game:
     def new(self):
         # Start a new game
         self.all_sprites = pg.sprite.Group()
+        self.player = Player(self, (3 * TILESIZE, 4 * TILESIZE))
         
     
     def run(self):
