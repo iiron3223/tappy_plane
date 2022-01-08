@@ -1,4 +1,4 @@
-# define colors
+# Colors
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 DARKGREY = (40, 40, 40)
@@ -11,9 +11,15 @@ CYAN = (0, 255, 255)
 MAGENTA = (255, 0, 255)
 
 
-# game options/settings
+# Game settings
 TITLE = "Flappy"
-WIDTH = 360
-HEIGHT = 480
-FPS = 30
+WIDTH = 1024  # 16 x 64 or 32 x 32 or 64 x 16 
+HEIGHT = 512  # 32 x 16 or 32 x 16 or 64 x 8
+FPS = 60
 BGCOLOR = BLACK
+
+
+# Game properties
+TILESIZE = 64
+GRID_WIDTH = WIDTH / TILESIZE
+GRID_HEIGHT = HEIGHT / TILESIZE
