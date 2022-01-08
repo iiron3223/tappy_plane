@@ -16,7 +16,7 @@ class Player(pg.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.pos = vector(pos)
         self.rect.bottomright = self.pos
-        self.vel = vector(100, 0)
+        self.vel = vector(HORIZONTAL_SPEED, 0)
         self.acc = vector(0, GRAVITY)
         
     def get_keys(self):
