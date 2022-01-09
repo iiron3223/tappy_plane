@@ -43,3 +43,9 @@ GROUND_IMG = 'groundGrass.png'
 ROCK = 'rockGrass.png'
 ROCK_DOWN = 'rockGrassDown.png'
 
+
+# Sprite layers
+ROCK_LAYER = 1
+GROUND_LAYER = 2
+PLAYER_LAYER = 4
+

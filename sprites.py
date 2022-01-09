@@ -33,6 +33,7 @@ class Spritesheet:
 
 class Player(pg.sprite.Sprite):
     def __init__(self, game: Game, pos: tuple(int, int)):
+        self._layer = PLAYER_LAYER
         self.groups = game.all_sprites
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game
@@ -90,6 +91,7 @@ class Ground(pg.sprite.Sprite):
     spawn = False
     
     def __init__(self, game: Game):
+        self._layer = GROUND_LAYER
         self.groups = game.all_sprites, game.obstacles, game.grounds
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game
@@ -102,6 +104,7 @@ class Ground(pg.sprite.Sprite):
 
 class Rock(pg.sprite.Sprite):
     def __init__(self, game: Game, pos: tuple(int, int), up: bool = True):
+        self._layer = ROCK_LAYER
         self.groups = game.all_sprites, game.obstacles, game.rocks
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game

@@ -34,7 +34,7 @@ class Game:
 
     def new(self):
         # Start a new game
-        self.all_sprites = pg.sprite.Group()
+        self.all_sprites = pg.sprite.LayeredUpdates()
         self.obstacles = pg.sprite.Group()
         self.grounds = pg.sprite.Group()
         self.rocks = pg.sprite.Group()
