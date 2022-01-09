@@ -34,7 +34,8 @@ class Game:
         self.all_sprites = pg.sprite.Group()
         self.obstacles = pg.sprite.Group()
         self.player = Player(self, (3 * TILESIZE, 4 * TILESIZE))
-        Ground(self, (0, HEIGHT))
+        Ground(self)
+        Ground(self)
         
     
     def run(self):
