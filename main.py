@@ -36,7 +36,7 @@ class Game:
         self.player = Player(self, (3 * TILESIZE, 4 * TILESIZE))
         Ground(self)
         Ground(self)
-        
+        Ground(self)
     
     def run(self):
         # Game loop
@@ -54,8 +54,13 @@ class Game:
         # Check for collision with obstacles
         if pg.sprite.spritecollide(self.player, self.obstacles, False):
             self.quit()
-
-    def events(self):
+        
+        # Move screen
+        for sprite in self.all_sprites:
+            sprite.rect.x -= HORIZONTAL_SPEED
+            
+            
+    def events(self): 
         # Game loop - events
         for event in pg.event.get():
             # check for closing window 

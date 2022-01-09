@@ -51,8 +51,9 @@ class Player(pg.sprite.Sprite):
         
     def update(self):
         self.get_keys()
-        self.vel += self.acc
-        self.vel += self.acc * self.game.dt
+        self.vel.y += self.acc.y * self.game.dt
+        self.vel.x = HORIZONTAL_SPEED * self.game.dt
+        #self.vel.y += self.acc * self.game.dt
         self.pos += self.vel * self.game.dt + 0.5 * self.acc * self.game.dt ** 2
         self.rect.center = self.pos
 
