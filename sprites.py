@@ -65,14 +65,14 @@ class Player(pg.sprite.Sprite):
     
 
 class Ground(pg.sprite.Sprite):
-    previous = (0, HEIGHT)
+    next = (0, HEIGHT)
     
     def __init__(self, game: Game):
-        self.groups = game.all_sprites, game.obstacles
+        self.groups = game.all_sprites, game.obstacles, game.grounds
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game
-        self.pos = self.previous
+        self.pos = self.next
         self.image = self.game.spritesheet.load_image(GROUND_IMG)
         self.rect = self.image.get_rect()
         self.rect.bottomleft = self.pos
-        Ground.previous = self.rect.bottomright
+        Ground.next = self.rect.bottomright

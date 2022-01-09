@@ -33,6 +33,7 @@ class Game:
         # Start a new game
         self.all_sprites = pg.sprite.Group()
         self.obstacles = pg.sprite.Group()
+        self.grounds = pg.sprite.Group()
         self.player = Player(self, (3 * TILESIZE, 4 * TILESIZE))
         Ground(self)
         Ground(self)
@@ -58,6 +59,17 @@ class Game:
         # Move screen
         for sprite in self.all_sprites:
             sprite.rect.x -= HORIZONTAL_SPEED
+        
+        # Spawn new.ground
+        for ground in self.grounds:
+            if WIDTH <= ground.rect.x <= SPAWN_DIST:
+                Ground.next = ground.rect.bottomright
+                Ground(self)
+        
+        # Kill sprites that got of the screen
+        for sprite in self.all_sprites:
+            if sprite.rect.right < -SPAWN_DIST:
+                sprite.kill()
             
             
     def events(self): 
