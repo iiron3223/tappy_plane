@@ -1,4 +1,4 @@
-# Flappy Game
+# Tappy Plane Game
 
 import pygame as pg
 import random

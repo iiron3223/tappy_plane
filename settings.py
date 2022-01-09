@@ -12,7 +12,7 @@ MAGENTA = (255, 0, 255)
 
 
 # Game settings
-TITLE = "Flappy"
+TITLE = "Tappy Plane"
 WIDTH = 1024  # 16 x 64 or 32 x 32 or 64 x 16 
 HEIGHT = 480  # 32 x 16 or 32 x 16 or 64 x 8
 FPS = 60
