@@ -17,7 +17,8 @@ WIDTH = 1024  # 16 x 64 or 32 x 32 or 64 x 16
 HEIGHT = 512  # 32 x 16 or 32 x 16 or 64 x 8
 FPS = 60
 BGCOLOR = BLACK
-
+SPRITESHEET_PNG = 'sheet.png'
+SPRITESHEET_XML = 'sheet.xml'
 
 # Game properties
 TILESIZE = 64

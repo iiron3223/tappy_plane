@@ -2,6 +2,7 @@
 
 import pygame as pg
 import random
+
 from pathlib import Path
 from settings import *
 from sprites import *
@@ -12,8 +13,8 @@ class Game:
         # Initialize game window
         pg.init()
         pg.mixer.init()
-        self.load_data()
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
+        self.load_data()
         pg.display.set_caption(TITLE)
         self.clock = pg.time.Clock()
         self.running = True
@@ -22,8 +23,12 @@ class Game:
     def load_data(self):
         game_dir = Path(__file__).parent
         img_dir = game_dir / 'img'
+        self.spritesheet = Spritesheet(img_dir, 
+                                       img_dir / SPRITESHEET_PNG, 
+                                       img_dir / SPRITESHEET_XML)
         self.ground_img = pg.image.load(img_dir / GROUND_IMG)
-        
+    
+
     def new(self):
         # Start a new game
         self.all_sprites = pg.sprite.Group()
@@ -44,7 +49,7 @@ class Game:
     def update(self):
         # Game loop - update
         self.all_sprites.update()
-        
+         
         # Check for collision with obstacles
         if pg.sprite.spritecollide(self.player, self.obstacles, False):
             self.quit()
