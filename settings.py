@@ -45,7 +45,7 @@ START_POSITION = (3 * TILESIZE, 2 * TILESIZE)
 # Obstacles settings
 GROUND_IMG = 'groundGrass.png'
 ROCK = 'rockGrass.png'
-ROCK_DOWN = 'rockGrassDown.png'
+ROCK_DOWN = 'rockDown.png'
 ROCK_VAR = 100
 ROCKS_NUMBER = 10
 
