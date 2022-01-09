@@ -16,8 +16,7 @@ class Game:
         self.load_data()
         pg.display.set_caption(TITLE)
         self.clock = pg.time.Clock()
-        self.running = True
-        
+        self.running = True   
         
     def load_data(self):
         self.game_dir = Path(__file__).parent
@@ -50,9 +49,9 @@ class Game:
     def new(self):
         # Start a new game
         Ground.reset()
-        pg.mixer.music.load(self.snd_dir / BACKGROUND_MUSIC)
+        pg.mixer.music.load(self.snd_dir / BACKGROUND_MUSIC, )
         pg.mixer.music.set_volume(0.5)
-        pg.mixer.music.play()
+        pg.mixer.music.play(loops=-1)
         self.all_sprites = pg.sprite.LayeredUpdates()
         self.obstacles = pg.sprite.Group()
         self.grounds = pg.sprite.Group()
@@ -165,7 +164,7 @@ class Game:
     def show_start_screen(self):
         pg.mixer.music.load(self.snd_dir / MENU_MUSIC)
         pg.mixer.music.set_volume(0.5)
-        pg.mixer.music.play()
+        pg.mixer.music.play(loops=-1)
         self.screen.fill(BGCOLOR)
         self.screen.blit(self.background, (0, 0))
         self.screen.blit(self.background, (self.background_rect.width, 0))
@@ -182,7 +181,7 @@ class Game:
         # Game over/continue
         pg.mixer.music.load(self.snd_dir / MENU_MUSIC)
         pg.mixer.music.set_volume(0.5)
-        pg.mixer.music.play()
+        pg.mixer.music.play(loops=-1)
         self.screen.fill(BGCOLOR)
         self.screen.blit(self.background, (0, 0))
         self.screen.blit(self.background, (self.background_rect.width, 0))
