@@ -10,6 +10,7 @@ YELLOW = (255, 255, 0)
 CYAN = (0, 255, 255)
 MAGENTA = (255, 0, 255)
 STEEL_BLUE = (70, 130, 180)
+DARK_BLUE = (74, 88, 112)
 
 
 # Game settings

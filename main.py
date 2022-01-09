@@ -120,15 +120,24 @@ class Game:
             pg.draw.line(self.screen, LIGHTGREY, (0, y), (WIDTH, y), 1)
             
     def show_start_screen(self):
-        # Game splash/start screen
-        pass
+        self.screen.fill(BGCOLOR)
+        self.screen.blit(self.background, (0, 0))
+        self.screen.blit(self.background, (self.background_rect.width, 0))
+        self.draw_text(TITLE, self.font, 105, DARK_BLUE, 
+                       WIDTH / 2, HEIGHT / 2, align="s")
+        self.draw_text("Press any key to start", self.font_thin, 32, STEEL_BLUE,
+                        WIDTH / 2, HEIGHT * 3 / 4, align="s")
+        self.draw_text("Tap space to fly", self.font_thin, 32, STEEL_BLUE,
+                        WIDTH / 2, HEIGHT * 5 / 6, align="s")
+        pg.display.flip()
+        self.wait_for_key()
     
     def show_go_screen(self):
         # Game over/continue
         self.screen.fill(BGCOLOR)
         self.screen.blit(self.background, (0, 0))
         self.screen.blit(self.background, (self.background_rect.width, 0))
-        self.draw_text("GAME OVER", self.font, 105, STEEL_BLUE, 
+        self.draw_text("GAME OVER", self.font, 105, DARK_BLUE, 
                        WIDTH / 2, HEIGHT / 2, align="s")
         self.draw_text("Press any key to restart", self.font_thin, 32, STEEL_BLUE,
                        WIDTH / 2, HEIGHT * 3 / 4, align="s")
@@ -181,6 +190,7 @@ if __name__ == '__main__':
     g = Game()
     g.show_start_screen()
     while g.running:
+        g.show_start_screen()
         g.new()
         g.run()
     
