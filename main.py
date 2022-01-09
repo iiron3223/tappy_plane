@@ -37,7 +37,7 @@ class Game:
         self.all_sprites = pg.sprite.Group()
         self.obstacles = pg.sprite.Group()
         self.grounds = pg.sprite.Group()
-        self.player = Player(self, (3 * TILESIZE, 4 * TILESIZE))
+        self.player = Player(self, (3 * TILESIZE, 2 * TILESIZE))
         Ground(self)
         Ground(self)
         Ground(self)
