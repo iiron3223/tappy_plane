@@ -15,7 +15,7 @@ class Player(pg.sprite.Sprite):
         self.image.fill(YELLOW)
         self.rect = self.image.get_rect()
         self.pos = vector(pos)
-        self.rect.bottomright = self.pos
+        self.rect.center = self.pos
         self.vel = vector(HORIZONTAL_SPEED, 0)
         self.acc = vector(0, GRAVITY)
         self.last_flap = 0
@@ -30,7 +30,7 @@ class Player(pg.sprite.Sprite):
         self.vel += self.acc
         self.vel += self.acc * self.game.dt
         self.pos += self.vel * self.game.dt + 0.5 * self.acc * self.game.dt ** 2
-        self.rect.bottomright = self.pos
+        self.rect.center = self.pos
 
     def flap(self):
         """Apply upward force to player, simulating wings flapping."""
