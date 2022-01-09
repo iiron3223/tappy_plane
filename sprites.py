@@ -15,14 +15,14 @@ class Spritesheet:
         with open(img_dir / SPRITESHEET_XML) as f:
             self.root = ET.parse(f).getroot()
     
-    def get_image(self, x, y, width, height):
+    def get_image(self, x: int, y: int, width: int, height: int):
         """Grab an image out of a larger spritesheet"""
         image = pg.Surface((width, height))
         image.blit(self.spritesheet, (0, 0), (x, y, width, height))
         image.set_colorkey(BLACK)
         return image.convert_alpha()
     
-    def load_image(self, name):
+    def load_image(self, name: str):
         """Load an sprite image from a spritesheet."""
         for c in self.root:
             if c.attrib['name'] == name:
@@ -124,3 +124,16 @@ class Rock(pg.sprite.Sprite):
             self.image = self.game.spritesheet.load_image(ROCK_DOWN)
             self.rect = self.image.get_rect()
             self.rect.topleft = self.x, self.y - random.randint(int(TILESIZE/3*2), ROCK_VAR)
+
+
+
+class Star(pg.sprite.Sprite):
+    def __init__(self, game: Game, pos: tuple(int, int)):
+        self._layer = STAR_LAYER
+        self.groups = game.all_sprites, game.stars
+        pg.sprite.Sprite.__init__(self, self.groups)
+        self.game = game
+        self.pos = pos
+        self.image = self.game.spritesheet.load_image(STAR_IMG)
+        self.rect = self.image.get_rect()
+        self.rect.center = self.pos

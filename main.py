@@ -43,10 +43,12 @@ class Game:
         self.obstacles = pg.sprite.Group()
         self.grounds = pg.sprite.Group()
         self.rocks = pg.sprite.Group()
+        self.stars = pg.sprite.Group()
         self.player = Player(self, START_POSITION)
         Ground(self)
         Ground(self)
-        Ground(self)  
+        Ground(self) 
+        Star(self, (TILESIZE*10, TILESIZE*5)) 
     
     def run(self):
         # Game loop

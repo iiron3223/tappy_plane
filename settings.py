@@ -50,9 +50,13 @@ ROCK_VAR = 100
 ROCKS_NUMBER = 10
 
 
+# Stars settings
+STAR_IMG = 'starGold.png'
+
 # Sprite layers
 ROCK_LAYER = 1
 GROUND_LAYER = 2
+STAR_LAYER = 3
 PLAYER_LAYER = 4
 
 
