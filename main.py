@@ -24,7 +24,9 @@ class Game:
     def new(self):
         # Start a new game
         self.all_sprites = pg.sprite.Group()
+        self.obstacles = pg.sprite.Group()
         self.player = Player(self, (3 * TILESIZE, 4 * TILESIZE))
+        Ground(self, (0, 7 * TILESIZE))
         
     
     def run(self):
@@ -39,6 +41,10 @@ class Game:
     def update(self):
         # Game loop - update
         self.all_sprites.update()
+        
+        # Check for collision with obstacles
+        if pg.sprite.spritecollide(self.player, self.obstacles, False):
+            self.quit()
 
     def events(self):
         # Game loop - events

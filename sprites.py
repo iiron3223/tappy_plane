@@ -37,3 +37,15 @@ class Player(pg.sprite.Sprite):
         if (now := pg.time.get_ticks()) - self.last_flap > FLAP_INTERVAL:
             self.last_flap = now
             self.vel.y = FLAP_POWER
+    
+
+class Ground(pg.sprite.Sprite):
+    def __init__(self, game: Game, pos: tuple(int, int)):
+        self.groups = game.all_sprites, game.obstacles
+        pg.sprite.Sprite.__init__(self, self.groups)
+        self.game = game
+        self.pos = pos
+        self.image = pg.Surface((12 * TILESIZE, 1 * TILESIZE))
+        self.image.fill(MAGENTA)
+        self.rect = self.image.get_rect()
+        self.rect.topleft = pos
