@@ -56,8 +56,10 @@ class Game:
         self.all_sprites.update()
          
         # Check for collision with obstacles
-        if pg.sprite.spritecollide(self.player, self.obstacles, False):
-            self.quit()
+        hits = pg.sprite.spritecollide(self.player, self.obstacles, False)
+        for obstacle in hits:
+            if pg.sprite.collide_mask(self.player, obstacle):
+                self.quit()
         
         # Move screen
         for sprite in self.all_sprites:
@@ -92,8 +94,7 @@ class Game:
         self.screen.blit(self.background, (0, 0))
         self.screen.blit(self.background, (self.background_rect.width, 0))
         self.all_sprites.draw(self.screen)
-        self.draw_grid()
-        # double bufffering = after drawing everything flip the display
+        #self.draw_grid()
         pg.display.flip()
         
     def draw_grid(self):
