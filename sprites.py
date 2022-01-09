@@ -2,6 +2,7 @@ from __future__ import annotations
 import pygame as pg
 import xml.etree.ElementTree as ET
 import random
+import pytweening as tween
 from main import Game
 from settings import *
 
@@ -133,7 +134,19 @@ class Star(pg.sprite.Sprite):
         self.groups = game.all_sprites, game.stars
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game
-        self.pos = pos
+        self.x, self.y = pos
         self.image = self.game.spritesheet.load_image(STAR_IMG)
         self.rect = self.image.get_rect()
-        self.rect.center = self.pos
+        self.rect.center = pos
+        self.tween = tween.easeInOutSine
+        self.step = 0
+        self.direction = 1
+    
+    def update(self):
+        # Bobbing motion
+        offset = STAR_BOB_RANGE * (self.tween(self.step / STAR_BOB_RANGE) - 0.5)
+        self.rect.centery = self.y + offset * self.direction
+        self.step += STAR_BOB_SPEED
+        if self.step > STAR_BOB_RANGE:
+            self.step = 0
+            self.direction *= -1
