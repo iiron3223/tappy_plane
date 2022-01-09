@@ -18,6 +18,7 @@ class Player(pg.sprite.Sprite):
         self.rect.bottomright = self.pos
         self.vel = vector(HORIZONTAL_SPEED, 0)
         self.acc = vector(0, GRAVITY)
+        self.last_flap = 0
         
     def get_keys(self):
         keys = pg.key.get_pressed()
@@ -32,5 +33,7 @@ class Player(pg.sprite.Sprite):
         self.rect.bottomright = self.pos
 
     def flap(self):
-        """Apply upward force to player."""
-        self.vel.y = FLAP_POWER
+        """Apply upward force to player, simulating wings flapping."""
+        if (now := pg.time.get_ticks()) - self.last_flap > FLAP_INTERVAL:
+            self.last_flap = now
+            self.vel.y = FLAP_POWER
