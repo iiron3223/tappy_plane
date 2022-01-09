@@ -2,6 +2,9 @@
 
 
 Attributions:
+Art:
+"Tappy Plane" by Kenney.nl is licensed under (CC0 1.0 Universal)
+    https://kenney.nl
 Music:
 "Awake! (Megawall-10)" by cynicmusic is licensed under (CC0 1.0)
     http://cynicmusic.com
