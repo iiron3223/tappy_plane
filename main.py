@@ -41,6 +41,8 @@ class Game:
         self.propeler_snd.set_volume(0.7)
         self.star_pickup_snd = pg.mixer.Sound(snd_dir / STAR_PICKUP_SND)
         self.star_pickup_snd.set_volume(0.7)
+        self.crash_snd = pg.mixer.Sound(snd_dir / CRASH_SND)
+        self.crash_snd.set_volume(0.7)
 
     def new(self):
         # Start a new game
@@ -76,6 +78,7 @@ class Game:
             if pg.sprite.collide_mask(self.player, obstacle):
                 self.playing = False
                 self.propeler_snd.fadeout(100)
+                self.crash_snd.play()
                 self.show_go_screen()
                 
         # Check for collisions with stars
