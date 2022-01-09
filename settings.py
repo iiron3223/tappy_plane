@@ -54,6 +54,7 @@ ROCKS_NUMBER = 10
 
 # Stars settings
 STAR_IMG = 'starGold.png'
+STAR_PICKUP_SND = 'pickupStar.wav'
 STAR_BOB_RANGE = 25
 STAR_BOB_SPEED = 0.5
 STAR_POINTS = 10

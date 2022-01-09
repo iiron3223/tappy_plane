@@ -39,7 +39,8 @@ class Game:
         snd_dir = game_dir / 'snd'
         self.propeler_snd = pg.mixer.Sound(snd_dir / PROPELER_SOUND)
         self.propeler_snd.set_volume(0.7)
-        
+        self.star_pickup_snd = pg.mixer.Sound(snd_dir / STAR_PICKUP_SND)
+        self.star_pickup_snd.set_volume(0.7)
 
     def new(self):
         # Start a new game
@@ -74,12 +75,14 @@ class Game:
         for obstacle in hits:
             if pg.sprite.collide_mask(self.player, obstacle):
                 self.playing = False
+                self.propeler_snd.fadeout(100)
                 self.show_go_screen()
                 
         # Check for collisions with stars
         hits = pg.sprite.spritecollide(self.player, self.stars, True)
         for star in hits:
             self.score += STAR_POINTS
+            self.star_pickup_snd.play()
         
         # Move screen
         for sprite in self.all_sprites:
