@@ -45,6 +45,7 @@ class Game:
         self.rocks = pg.sprite.Group()
         self.stars = pg.sprite.Group()
         self.player = Player(self, START_POSITION)
+        self.score = 0
         Ground(self)
         Ground(self)
         Ground(self) 
@@ -70,6 +71,11 @@ class Game:
             if pg.sprite.collide_mask(self.player, obstacle):
                 self.playing = False
                 self.show_go_screen()
+                
+        # Check for collisions with stars
+        hits = pg.sprite.spritecollide(self.player, self.stars, True)
+        for star in hits:
+            self.score += 10
         
         # Move screen
         for sprite in self.all_sprites:
@@ -112,6 +118,9 @@ class Game:
         self.screen.blit(self.background, (self.background_rect.width, 0))
         self.all_sprites.draw(self.screen)
         #self.draw_grid()
+        # Draw HUD
+        self.draw_text(f"{self.score}", self.font, 32, STEEL_BLUE,
+                       20, 20, align="nw")
         pg.display.flip()
         
     def draw_grid(self):

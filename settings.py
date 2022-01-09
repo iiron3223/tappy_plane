@@ -54,6 +54,7 @@ ROCKS_NUMBER = 10
 STAR_IMG = 'starGold.png'
 STAR_BOB_RANGE = 25
 STAR_BOB_SPEED = 0.5
+STAR_POINTS = 10
 
 # Sprite layers
 ROCK_LAYER = 1
