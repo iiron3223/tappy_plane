@@ -49,7 +49,6 @@ class Game:
         Ground(self)
         Ground(self)
         Ground(self) 
-        Star(self, (TILESIZE*10, TILESIZE*5)) 
     
     def run(self):
         # Game loop
@@ -75,7 +74,7 @@ class Game:
         # Check for collisions with stars
         hits = pg.sprite.spritecollide(self.player, self.stars, True)
         for star in hits:
-            self.score += 10
+            self.score += STAR_POINTS
         
         # Move screen
         for sprite in self.all_sprites:
@@ -100,6 +99,16 @@ class Game:
             y = random.choice((0, HEIGHT))
             up = bool(y)
             Rock(self, (x, y), up)
+        
+        # Spawn stars
+        if len(self.stars) < STAR_NUMBER:
+            x = random.randint(WIDTH, 2*WIDTH)
+            y = random.randint(0, HEIGHT)
+            for i in range(3):
+                Star(self, (x + i * STAR_SPREAD, y))
+        
+        pg.sprite.groupcollide(self.stars, self.obstacles, True, False) 
+
             
             
     def events(self): 
