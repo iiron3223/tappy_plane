@@ -39,6 +39,7 @@ SPAWN_DIST = WIDTH + 200
 PLAYER_IMAGES = ['planeRed1.png', 'planeRed2.png', 'planeRed3.png']
 PROPELER_SOUND = 'airplane_prop.ogg'
 CRASH_SND = 'crash.wav'
+CRASH_IMG = 'puffLarge.png'
 PLAYER_ANIM_RATE = 30
 FLAP_POWER = -30
 FLAP_INTERVAL = 500

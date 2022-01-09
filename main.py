@@ -33,6 +33,8 @@ class Game:
                        for img in PLAYER_IMAGES]
         self.background = self.spritesheet.load_image(BACKGROUND_IMG)
         self.background_rect = self.background.get_rect()
+        self.crash_img = self.spritesheet.load_image(CRASH_IMG)
+        self.crash_rect = self.crash_img.get_rect()
         self.font = img_dir / FONT
         self.font_thin = img_dir /FONT_THIN
         # Load sound
@@ -82,8 +84,11 @@ class Game:
         hits = pg.sprite.spritecollide(self.player, self.obstacles, False)
         for obstacle in hits:
             if pg.sprite.collide_mask(self.player, obstacle):
+                self.screen.blit(self.crash_img, self.player.rect.center)
+                pg.display.flip()
+                self.player.kill()
                 self.playing = False
-                self.propeler_snd.fadeout(100)
+                self.propeler_snd.fadeout(50)
                 self.wind_snd.fadeout(100)
                 pg.mixer.music.fadeout(500)
                 self.crash_snd.play()
