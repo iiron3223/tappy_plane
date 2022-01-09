@@ -25,6 +25,7 @@ BACKGROUND_IMG = 'background.png'
 FONT = 'kenvector_future.ttf'
 FONT_THIN = 'kenvector_future_thin.ttf'
 
+
 # Game properties
 TILESIZE = 64
 GRID_WIDTH = WIDTH / TILESIZE
@@ -34,6 +35,7 @@ SPAWN_DIST = WIDTH + 200
 
 # Player settings
 PLAYER_IMAGES = ['planeRed1.png', 'planeRed2.png', 'planeRed3.png']
+PROPELER_SOUND = 'airplane_prop.ogg'
 PLAYER_ANIM_RATE = 30
 FLAP_POWER = -30
 FLAP_INTERVAL = 500

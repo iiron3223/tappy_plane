@@ -24,6 +24,7 @@ class Game:
         
     def load_data(self):
         game_dir = Path(__file__).parent
+        # Load graphics
         img_dir = game_dir / 'img'
         self.spritesheet = Spritesheet(img_dir, 
                                        img_dir / SPRITESHEET_PNG, 
@@ -34,6 +35,10 @@ class Game:
         self.background_rect = self.background.get_rect()
         self.font = img_dir / FONT
         self.font_thin = img_dir /FONT_THIN
+        # Load sound
+        snd_dir = game_dir / 'snd'
+        self.propeler_snd = pg.mixer.Sound(snd_dir / PROPELER_SOUND)
+        self.propeler_snd.set_volume(0.7)
         
 
     def new(self):

@@ -56,6 +56,10 @@ class Player(pg.sprite.Sprite):
         keys = pg.key.get_pressed()
         if keys[pg.K_SPACE]:
             self.flap()
+            if not self.game.propeler_snd.get_num_channels():
+                self.game.propeler_snd.play()
+        if not keys[pg.K_SPACE]:
+            self.game.propeler_snd.fadeout(100)
     
     def animate(self):
         now = pg.time.get_ticks()
