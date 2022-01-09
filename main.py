@@ -26,8 +26,8 @@ class Game:
         self.spritesheet = Spritesheet(img_dir, 
                                        img_dir / SPRITESHEET_PNG, 
                                        img_dir / SPRITESHEET_XML)
-        self.ground_img = pg.image.load(img_dir / GROUND_IMG)
-    
+        self.player_anim = [pg.image.load(img_dir / img).convert_alpha() 
+                       for img in PLAYER_IMAGES]
 
     def new(self):
         # Start a new game
