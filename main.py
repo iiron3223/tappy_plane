@@ -2,10 +2,7 @@
 
 import pygame as pg
 import random
-
 from pathlib import Path
-
-from pygame.font import Font
 from settings import *
 from sprites import *
 
