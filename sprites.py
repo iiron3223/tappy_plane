@@ -12,9 +12,9 @@ vector = pg.math.Vector2
 class Spritesheet:
     """Utility class for loading and parsing spritesheets"""
     
-    def __init__(self, img_dir, spritesheet, xml):
+    def __init__(self, spritesheet, xml):
         self.spritesheet = pg.image.load(spritesheet).convert()
-        with open(img_dir / SPRITESHEET_XML) as f:
+        with open(xml) as f:
             self.root = ET.parse(f).getroot()
     
     def get_image(self, x: int, y: int, width: int, height: int):

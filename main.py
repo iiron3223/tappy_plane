@@ -22,8 +22,7 @@ class Game:
         self.game_dir = Path(__file__).parent
         # Load graphics
         img_dir = self.game_dir / 'img'
-        self.spritesheet = Spritesheet(img_dir, 
-                                       img_dir / SPRITESHEET_PNG, 
+        self.spritesheet = Spritesheet(img_dir / SPRITESHEET_PNG, 
                                        img_dir / SPRITESHEET_XML)
         self.player_anim = [pg.image.load(img_dir / img).convert_alpha() 
                        for img in PLAYER_IMAGES]
