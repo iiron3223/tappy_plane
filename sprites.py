@@ -101,6 +101,11 @@ class Ground(pg.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.bottomleft = self.pos
         Ground.next = self.rect.bottomright
+    
+    @classmethod
+    def reset(cls):
+        cls.next = (0, HEIGHT)
+        spawn = False
 
 
 class Rock(pg.sprite.Sprite):

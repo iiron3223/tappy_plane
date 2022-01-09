@@ -9,6 +9,7 @@ BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
 CYAN = (0, 255, 255)
 MAGENTA = (255, 0, 255)
+STEEL_BLUE = (70, 130, 180)
 
 
 # Game settings
@@ -20,6 +21,8 @@ BGCOLOR = DARKGREY
 SPRITESHEET_PNG = 'sheet.png'
 SPRITESHEET_XML = 'sheet.xml'
 BACKGROUND_IMG = 'background.png'
+FONT = 'kenvector_future.ttf'
+FONT_THIN = 'kenvector_future_thin.ttf'
 
 # Game properties
 TILESIZE = 64

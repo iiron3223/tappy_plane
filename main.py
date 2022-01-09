@@ -4,6 +4,8 @@ import pygame as pg
 import random
 
 from pathlib import Path
+
+from pygame.font import Font
 from settings import *
 from sprites import *
 
@@ -30,10 +32,13 @@ class Game:
                        for img in PLAYER_IMAGES]
         self.background = self.spritesheet.load_image(BACKGROUND_IMG)
         self.background_rect = self.background.get_rect()
+        self.font = img_dir / FONT
+        self.font_thin = img_dir /FONT_THIN
         
 
     def new(self):
         # Start a new game
+        Ground.reset()
         self.all_sprites = pg.sprite.LayeredUpdates()
         self.obstacles = pg.sprite.Group()
         self.grounds = pg.sprite.Group()
@@ -50,7 +55,8 @@ class Game:
             self.dt = self.clock.tick(FPS) / 1000
             self.events()
             self.update()
-            self.draw()
+            if self.playing:
+                self.draw()
     
     def update(self):
         # Game loop - update
@@ -60,6 +66,7 @@ class Game:
         hits = pg.sprite.spritecollide(self.player, self.obstacles, False)
         for obstacle in hits:
             if pg.sprite.collide_mask(self.player, obstacle):
+                self.playing = False
                 self.show_go_screen()
         
         # Move screen
@@ -121,6 +128,10 @@ class Game:
         self.screen.fill(BGCOLOR)
         self.screen.blit(self.background, (0, 0))
         self.screen.blit(self.background, (self.background_rect.width, 0))
+        self.draw_text("GAME OVER", self.font, 105, STEEL_BLUE, 
+                       WIDTH / 2, HEIGHT / 2, align="s")
+        self.draw_text("Press any key to restart", self.font_thin, 32, STEEL_BLUE,
+                       WIDTH / 2, HEIGHT * 3 / 4, align="s")
         pg.display.flip()
         self.wait_for_key()
     
@@ -141,6 +152,31 @@ class Game:
             self.playing = False
         self.running = False
     
+    def draw_text(self, text, font_name, size, color, x, y, align="nw"):
+        font = pg.font.Font(font_name, size)
+        text_surface = font.render(text, True, color)
+        text_rect = text_surface.get_rect()
+        if align == "nw":
+            text_rect.topleft = (x, y)
+        if align == "ne":
+            text_rect.topright = (x, y)
+        if align == "sw":
+            text_rect.bottomleft = (x, y)
+        if align == "se":
+            text_rect.bottomright = (x, y)
+        if align == "n":
+            text_rect.midtop = (x, y)
+        if align == "s":
+            text_rect.midbottom = (x, y)
+        if align == "e":
+            text_rect.midright = (x, y)
+        if align == "w":
+            text_rect.midleft = (x, y)
+        if align == "center":
+            text_rect.center = (x, y)
+        self.screen.blit(text_surface, text_rect)
+        
+        
 if __name__ == '__main__':
     g = Game()
     g.show_start_screen()
