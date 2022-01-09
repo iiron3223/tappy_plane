@@ -82,6 +82,8 @@ class Game:
                 self.quit()
                 
     def draw(self):
+        # Show FPS
+        pg.display.set_caption(f"{int(self.clock.get_fps())} FPS")
         # Game loop - draw
         self.screen.fill(BGCOLOR)
         self.all_sprites.draw(self.screen)
