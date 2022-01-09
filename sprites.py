@@ -98,3 +98,18 @@ class Ground(pg.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.bottomleft = self.pos
         Ground.next = self.rect.bottomright
+
+
+class Rock(pg.sprite.Sprite):
+    def __init__(self, game: Game, pos: tuple(int, int), up: bool = True):
+        self.groups = game.all_sprites, game.obstacles, game.rocks
+        pg.sprite.Sprite.__init__(self, self.groups)
+        self.game = game
+        self.up = up
+        if self.up:
+            self.image = self.game.spritesheet.load_image(ROCK)
+        else:
+            self.image = self.game.spritesheet.load_image(ROCK_DOWN)
+        self.rect = self.image.get_rect()
+        self.pos = pos
+        self.rect.bottomleft = self.pos
