@@ -28,6 +28,9 @@ class Game:
                                        img_dir / SPRITESHEET_XML)
         self.player_anim = [pg.image.load(img_dir / img).convert_alpha() 
                        for img in PLAYER_IMAGES]
+        self.background = self.spritesheet.load_image(BACKGROUND_IMG)
+        self.background_rect = self.background.get_rect()
+        
 
     def new(self):
         # Start a new game
@@ -85,7 +88,9 @@ class Game:
         # Show FPS
         pg.display.set_caption(f"{int(self.clock.get_fps())} FPS")
         # Game loop - draw
-        self.screen.fill(BGCOLOR)
+        self.screen.fill(BGCOLOR) 
+        self.screen.blit(self.background, (0, 0))
+        self.screen.blit(self.background, (self.background_rect.width, 0))
         self.all_sprites.draw(self.screen)
         self.draw_grid()
         # double bufffering = after drawing everything flip the display

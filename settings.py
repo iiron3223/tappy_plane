@@ -14,11 +14,12 @@ MAGENTA = (255, 0, 255)
 # Game settings
 TITLE = "Flappy"
 WIDTH = 1024  # 16 x 64 or 32 x 32 or 64 x 16 
-HEIGHT = 512  # 32 x 16 or 32 x 16 or 64 x 8
+HEIGHT = 480  # 32 x 16 or 32 x 16 or 64 x 8
 FPS = 60
-BGCOLOR = BLACK
+BGCOLOR = DARKGREY
 SPRITESHEET_PNG = 'sheet.png'
 SPRITESHEET_XML = 'sheet.xml'
+BACKGROUND_IMG = 'background.png'
 
 # Game properties
 TILESIZE = 64

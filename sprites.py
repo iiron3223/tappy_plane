@@ -10,7 +10,7 @@ class Spritesheet:
     """Utility class for loading and parsing spritesheets"""
     
     def __init__(self, img_dir, spritesheet, xml):
-        self.spritesheet = pg.image.load(spritesheet).convert_alpha()
+        self.spritesheet = pg.image.load(spritesheet).convert()
         with open(img_dir / SPRITESHEET_XML) as f:
             self.root = ET.parse(f).getroot()
     
@@ -18,7 +18,8 @@ class Spritesheet:
         """Grab an image out of a larger spritesheet"""
         image = pg.Surface((width, height))
         image.blit(self.spritesheet, (0, 0), (x, y, width, height))
-        return image
+        image.set_colorkey(BLACK)
+        return image.convert_alpha()
     
     def load_image(self, name):
         """Load an sprite image from a spritesheet."""
