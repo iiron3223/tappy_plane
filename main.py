@@ -60,7 +60,7 @@ class Game:
         hits = pg.sprite.spritecollide(self.player, self.obstacles, False)
         for obstacle in hits:
             if pg.sprite.collide_mask(self.player, obstacle):
-                self.quit()
+                self.show_go_screen()
         
         # Move screen
         for sprite in self.all_sprites:
@@ -118,7 +118,23 @@ class Game:
     
     def show_go_screen(self):
         # Game over/continue
-        pass
+        self.screen.fill(BGCOLOR)
+        self.screen.blit(self.background, (0, 0))
+        self.screen.blit(self.background, (self.background_rect.width, 0))
+        pg.display.flip()
+        self.wait_for_key()
+    
+    def wait_for_key(self):
+        pg.event.wait()
+        waiting = True
+        while waiting:
+            self.clock.tick(FPS)
+            for event in pg.event.get():
+                if event.type == pg.QUIT:
+                    waiting = False
+                    self.quit()
+                if event.type == pg.KEYUP:
+                    waiting = False
     
     def quit(self):
         if self.playing:
@@ -131,6 +147,5 @@ if __name__ == '__main__':
     while g.running:
         g.new()
         g.run()
-        g.show_go_screen()
     
     pg.quit()
