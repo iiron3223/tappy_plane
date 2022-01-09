@@ -43,6 +43,7 @@ class Game:
         Ground(self)
         Ground(self)
         Rock(self, (12*TILESIZE, HEIGHT))
+        Rock(self, (12*TILESIZE, 0), False)    
     
     def run(self):
         # Game loop

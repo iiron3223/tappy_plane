@@ -1,6 +1,7 @@
 from __future__ import annotations
 import pygame as pg
 import xml.etree.ElementTree as ET
+import random
 from main import Game
 from settings import *
 
@@ -109,10 +110,12 @@ class Rock(pg.sprite.Sprite):
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game
         self.up = up
+        self.x, self.y = pos
         if self.up:
             self.image = self.game.spritesheet.load_image(ROCK)
+            self.rect = self.image.get_rect()
+            self.rect.bottomleft = self.x, self.y + random.randint(TILESIZE/2, ROCK_VAR)
         else:
             self.image = self.game.spritesheet.load_image(ROCK_DOWN)
-        self.rect = self.image.get_rect()
-        self.pos = pos
-        self.rect.bottomleft = self.pos
+            self.rect = self.image.get_rect()
+            self.rect.topleft = self.x, self.y - random.randint(TILESIZE/2, ROCK_VAR)

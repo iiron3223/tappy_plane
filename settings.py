@@ -42,10 +42,12 @@ START_POSITION = (3 * TILESIZE, 2 * TILESIZE)
 GROUND_IMG = 'groundGrass.png'
 ROCK = 'rockGrass.png'
 ROCK_DOWN = 'rockGrassDown.png'
+ROCK_VAR = 100
 
 
 # Sprite layers
 ROCK_LAYER = 1
 GROUND_LAYER = 2
 PLAYER_LAYER = 4
+
 
