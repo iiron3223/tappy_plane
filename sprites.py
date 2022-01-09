@@ -65,14 +65,14 @@ class Player(pg.sprite.Sprite):
             self.rot = vel.angle_to(vector(1, 0))
             self.image = pg.transform.rotate(self.image, self.rot)
             self.rect.center = center
-            # Apply rotation to player image
-            
         
     def update(self):
         self.get_keys()
         self.animate()
         self.vel.y += self.acc.y * self.game.dt
         self.vel.x = HORIZONTAL_SPEED * self.game.dt
+        if self.pos.y < 0:
+            self.vel.y += 3* self.acc.y * self.game.dt
         self.rect = self.image.get_rect()
         self.pos += self.vel * self.game.dt + 0.5 * self.acc * self.game.dt ** 2
         self.rect.center = self.pos
@@ -81,7 +81,8 @@ class Player(pg.sprite.Sprite):
         """Apply upward force to player."""
         #if (now := pg.time.get_ticks()) - self.last_flap > FLAP_INTERVAL:
         #    self.last_flap = now
-        self.vel.y += FLAP_POWER
+        if self.pos.y > 0:
+            self.vel.y += FLAP_POWER
     
 
 class Ground(pg.sprite.Sprite):
