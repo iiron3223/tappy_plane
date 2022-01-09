@@ -66,6 +66,7 @@ class Player(pg.sprite.Sprite):
 
 class Ground(pg.sprite.Sprite):
     next = (0, HEIGHT)
+    spawn = False
     
     def __init__(self, game: Game):
         self.groups = game.all_sprites, game.obstacles, game.grounds

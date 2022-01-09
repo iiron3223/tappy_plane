@@ -62,13 +62,15 @@ class Game:
         
         # Spawn new.ground
         for ground in self.grounds:
-            if WIDTH <= ground.rect.x <= SPAWN_DIST:
+            if WIDTH <= ground.rect.right <= SPAWN_DIST and Ground.spawn:
                 Ground.next = ground.rect.bottomright
                 Ground(self)
+                Ground.spawn = False
         
         # Kill sprites that got of the screen
         for sprite in self.all_sprites:
-            if sprite.rect.right < -SPAWN_DIST:
+            if sprite.rect.right < 0:
+                Ground.spawn = True
                 sprite.kill()
             
             
