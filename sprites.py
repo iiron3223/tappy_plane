@@ -36,24 +36,36 @@ class Player(pg.sprite.Sprite):
         self.groups = game.all_sprites
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game
-        self.image = self.game.player_anim[0]
+        self.current_frame = 0
+        self.last_update = 0
+        self.image = self.game.player_anim[self.current_frame]
         self.rect = self.image.get_rect()
         self.pos = vector(pos)
         self.rect.center = self.pos
-        self.vel = vector(HORIZONTAL_SPEED, 0)
+        self.vel = vector(0, 0)
         self.acc = vector(0, GRAVITY)
         self.last_flap = 0
+        
         
     def get_keys(self):
         keys = pg.key.get_pressed()
         if keys[pg.K_SPACE]:
             self.flap()
+    
+    def animate(self):
+        now = pg.time.get_ticks()
+        if  now - self.last_update >= PLAYER_ANIM_RATE:
+            self.last_update = now
+            self.current_frame = (self.current_frame + 1) % len(PLAYER_IMAGES)
+            center = self.rect.center
+            self.image = self.game.player_anim[self.current_frame]
+            self.rect.center = center
         
     def update(self):
         self.get_keys()
+        self.animate()
         self.vel.y += self.acc.y * self.game.dt
         self.vel.x = HORIZONTAL_SPEED * self.game.dt
-        #self.vel.y += self.acc * self.game.dt
         self.pos += self.vel * self.game.dt + 0.5 * self.acc * self.game.dt ** 2
         self.rect.center = self.pos
 
