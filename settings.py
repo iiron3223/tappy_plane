@@ -24,7 +24,8 @@ SPRITESHEET_XML = 'sheet.xml'
 BACKGROUND_IMG = 'background.png'
 FONT = 'kenvector_future.ttf'
 FONT_THIN = 'kenvector_future_thin.ttf'
-
+BACKGROUND_MUSIC = 'awake10_megaWall.ogg'
+WIND_SND = 'wind_woosh.ogg'
 
 # Game properties
 TILESIZE = 64

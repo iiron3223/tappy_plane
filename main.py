@@ -38,15 +38,20 @@ class Game:
         # Load sound
         snd_dir = game_dir / 'snd'
         self.propeler_snd = pg.mixer.Sound(snd_dir / PROPELER_SOUND)
-        self.propeler_snd.set_volume(0.7)
+        #self.propeler_snd.set_volume(0.7)
         self.star_pickup_snd = pg.mixer.Sound(snd_dir / STAR_PICKUP_SND)
         self.star_pickup_snd.set_volume(0.7)
         self.crash_snd = pg.mixer.Sound(snd_dir / CRASH_SND)
-        self.crash_snd.set_volume(0.7)
+        #self.crash_snd.set_volume(0.7)
+        self.wind_snd = pg.mixer.Sound(snd_dir / WIND_SND)
+        pg.mixer.music.load(snd_dir / BACKGROUND_MUSIC)
+        pg.mixer.music.set_volume(0.5)
+        
 
     def new(self):
         # Start a new game
         Ground.reset()
+        pg.mixer.music.play()
         self.all_sprites = pg.sprite.LayeredUpdates()
         self.obstacles = pg.sprite.Group()
         self.grounds = pg.sprite.Group()
@@ -78,6 +83,8 @@ class Game:
             if pg.sprite.collide_mask(self.player, obstacle):
                 self.playing = False
                 self.propeler_snd.fadeout(100)
+                self.wind_snd.fadeout(100)
+                pg.mixer.music.fadeout(500)
                 self.crash_snd.play()
                 self.show_go_screen()
                 
@@ -117,6 +124,9 @@ class Game:
             y = random.randint(0, HEIGHT)
             for i in range(3):
                 Star(self, (x + i * STAR_SPREAD, y))
+        
+        if not self.wind_snd.get_num_channels():
+            self.wind_snd.play()
         
         pg.sprite.groupcollide(self.stars, self.obstacles, True, False) 
 
