@@ -23,9 +23,9 @@ class Game:
         
         
     def load_data(self):
-        game_dir = Path(__file__).parent
+        self.game_dir = Path(__file__).parent
         # Load graphics
-        img_dir = game_dir / 'img'
+        img_dir = self.game_dir / 'img'
         self.spritesheet = Spritesheet(img_dir, 
                                        img_dir / SPRITESHEET_PNG, 
                                        img_dir / SPRITESHEET_XML)
@@ -38,7 +38,7 @@ class Game:
         self.font = img_dir / FONT
         self.font_thin = img_dir /FONT_THIN
         # Load sound
-        self.snd_dir = game_dir / 'snd'
+        self.snd_dir = self.game_dir / 'snd'
         self.propeler_snd = pg.mixer.Sound(self.snd_dir / PROPELER_SOUND)
         #self.propeler_snd.set_volume(0.7)
         self.star_pickup_snd = pg.mixer.Sound(self.snd_dir / STAR_PICKUP_SND)
@@ -46,6 +46,9 @@ class Game:
         self.crash_snd = pg.mixer.Sound(self.snd_dir / CRASH_SND)
         #self.crash_snd.set_volume(0.7)
         self.wind_snd = pg.mixer.Sound(self.snd_dir / WIND_SND)
+        # Load highscore
+        with open(self.game_dir / SCORE, 'r') as f:
+            self.highscore = f.read()
         
         
 
@@ -192,8 +195,21 @@ class Game:
         self.screen.blit(self.background, (self.background_rect.width, 0))
         self.draw_text("GAME OVER", self.font, 105, DARK_BLUE, 
                        WIDTH / 2, HEIGHT / 2, align="s")
+        if self.score <= int(self.highscore):
+            self.draw_text(f"YOUR SCORE: {self.score}", self.font, 48, DARK_BLUE, 
+                        WIDTH / 2, HEIGHT * 3 / 5, align="s")
+            self.draw_text(f"Highscore: {self.highscore}", self.font, 32, DARK_BLUE, 
+                        WIDTH / 2, HEIGHT * 5 / 7, align="s")
+        else:
+            self.draw_text(f"NEW HIGHSCORE! {self.score}", self.font, 48, DARK_BLUE, 
+                        WIDTH / 2, HEIGHT * 3 / 5, align="s")
+            self.draw_text(f" Previous Highscore: {self.highscore}", self.font, 32, DARK_BLUE, 
+                        WIDTH / 2, HEIGHT * 5 / 7, align="s")
+            self.highscore = str(self.score)
+            with open(self.game_dir / SCORE, 'w') as f:
+                f.write(self.highscore)
         self.draw_text("Press any key to restart", self.font_thin, 32, STEEL_BLUE,
-                       WIDTH / 2, HEIGHT * 3 / 4, align="s")
+                       WIDTH / 2, HEIGHT * 7 / 8, align="s")
         pg.display.flip()
         self.wait_for_key()
     

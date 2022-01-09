@@ -27,6 +27,7 @@ FONT_THIN = 'kenvector_future_thin.ttf'
 BACKGROUND_MUSIC = 'awake10_megaWall.ogg'
 MENU_MUSIC = 'menu_loop.ogg'
 WIND_SND = 'wind_woosh.ogg'
+SCORE = 'score.txt'
 
 # Game properties
 TILESIZE = 64
