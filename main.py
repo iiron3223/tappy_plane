@@ -2,9 +2,10 @@
 
 import pygame as pg
 import random
-from os import path
+from pathlib import Path
 from settings import *
 from sprites import *
+
 
 class Game:
     def __init__(self) -> None:
@@ -19,14 +20,16 @@ class Game:
         
         
     def load_data(self):
-        game_dir = path.dirname(__file__)
+        game_dir = Path(__file__).parent
+        img_dir = game_dir / 'img'
+        self.ground_img = pg.image.load(img_dir / GROUND_IMG)
         
     def new(self):
         # Start a new game
         self.all_sprites = pg.sprite.Group()
         self.obstacles = pg.sprite.Group()
         self.player = Player(self, (3 * TILESIZE, 4 * TILESIZE))
-        Ground(self, (0, 7 * TILESIZE))
+        Ground(self, (0, HEIGHT))
         
     
     def run(self):

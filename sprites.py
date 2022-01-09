@@ -45,7 +45,6 @@ class Ground(pg.sprite.Sprite):
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game
         self.pos = pos
-        self.image = pg.Surface((12 * TILESIZE, 1 * TILESIZE))
-        self.image.fill(MAGENTA)
+        self.image = self.game.ground_img
         self.rect = self.image.get_rect()
-        self.rect.topleft = pos
+        self.rect.bottomleft = pos

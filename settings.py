@@ -32,3 +32,7 @@ FLAP_INTERVAL = 500
 GRAVITY = 10
 HORIZONTAL_SPEED = 100
 
+
+# Obstacles settings
+GROUND_IMG = 'groundGrass.png'
+
