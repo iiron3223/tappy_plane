@@ -31,7 +31,7 @@ SPAWN_DIST = WIDTH + 200
 # Player settings
 PLAYER_IMAGES = ['planeRed1.png', 'planeRed2.png', 'planeRed3.png']
 PLAYER_ANIM_RATE = 30
-FLAP_POWER = -300
+FLAP_POWER = -30
 FLAP_INTERVAL = 500
 GRAVITY = 600
 HORIZONTAL_SPEED = 2
