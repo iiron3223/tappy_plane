@@ -29,6 +29,7 @@ MENU_MUSIC = 'menu_loop.ogg'
 WIND_SND = 'wind_woosh.ogg'
 SCORE = 'score.txt'
 
+
 # Game properties
 TILESIZE = 64
 GRID_WIDTH = WIDTH / TILESIZE
@@ -66,6 +67,7 @@ STAR_BOB_SPEED = 0.5
 STAR_POINTS = 10
 STAR_NUMBER = 6
 STAR_SPREAD = 64
+
 
 # Sprite layers
 ROCK_LAYER = 1

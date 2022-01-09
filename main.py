@@ -50,8 +50,6 @@ class Game:
         with open(self.game_dir / SCORE, 'r') as f:
             self.highscore = f.read()
         
-        
-
     def new(self):
         # Start a new game
         Ground.reset()
@@ -138,9 +136,7 @@ class Game:
             self.wind_snd.play()
         
         pg.sprite.groupcollide(self.stars, self.obstacles, True, False) 
-
-            
-            
+           
     def events(self): 
         # Game loop - events
         for event in pg.event.get():

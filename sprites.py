@@ -8,6 +8,7 @@ from settings import *
 
 vector = pg.math.Vector2
 
+
 class Spritesheet:
     """Utility class for loading and parsing spritesheets"""
     
@@ -129,7 +130,6 @@ class Rock(pg.sprite.Sprite):
             self.image = self.game.spritesheet.load_image(ROCK_DOWN)
             self.rect = self.image.get_rect()
             self.rect.topleft = self.x, self.y - random.randint(ROCK_MIN_VAR, ROCK_MAX_VAR)
-
 
 
 class Star(pg.sprite.Sprite):
