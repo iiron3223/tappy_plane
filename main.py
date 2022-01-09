@@ -36,21 +36,22 @@ class Game:
         self.font = img_dir / FONT
         self.font_thin = img_dir /FONT_THIN
         # Load sound
-        snd_dir = game_dir / 'snd'
-        self.propeler_snd = pg.mixer.Sound(snd_dir / PROPELER_SOUND)
+        self.snd_dir = game_dir / 'snd'
+        self.propeler_snd = pg.mixer.Sound(self.snd_dir / PROPELER_SOUND)
         #self.propeler_snd.set_volume(0.7)
-        self.star_pickup_snd = pg.mixer.Sound(snd_dir / STAR_PICKUP_SND)
+        self.star_pickup_snd = pg.mixer.Sound(self.snd_dir / STAR_PICKUP_SND)
         self.star_pickup_snd.set_volume(0.7)
-        self.crash_snd = pg.mixer.Sound(snd_dir / CRASH_SND)
+        self.crash_snd = pg.mixer.Sound(self.snd_dir / CRASH_SND)
         #self.crash_snd.set_volume(0.7)
-        self.wind_snd = pg.mixer.Sound(snd_dir / WIND_SND)
-        pg.mixer.music.load(snd_dir / BACKGROUND_MUSIC)
-        pg.mixer.music.set_volume(0.5)
+        self.wind_snd = pg.mixer.Sound(self.snd_dir / WIND_SND)
+        
         
 
     def new(self):
         # Start a new game
         Ground.reset()
+        pg.mixer.music.load(self.snd_dir / BACKGROUND_MUSIC)
+        pg.mixer.music.set_volume(0.5)
         pg.mixer.music.play()
         self.all_sprites = pg.sprite.LayeredUpdates()
         self.obstacles = pg.sprite.Group()
@@ -161,6 +162,9 @@ class Game:
             pg.draw.line(self.screen, LIGHTGREY, (0, y), (WIDTH, y), 1)
             
     def show_start_screen(self):
+        pg.mixer.music.load(self.snd_dir / MENU_MUSIC)
+        pg.mixer.music.set_volume(0.5)
+        pg.mixer.music.play()
         self.screen.fill(BGCOLOR)
         self.screen.blit(self.background, (0, 0))
         self.screen.blit(self.background, (self.background_rect.width, 0))
@@ -175,6 +179,9 @@ class Game:
     
     def show_go_screen(self):
         # Game over/continue
+        pg.mixer.music.load(self.snd_dir / MENU_MUSIC)
+        pg.mixer.music.set_volume(0.5)
+        pg.mixer.music.play()
         self.screen.fill(BGCOLOR)
         self.screen.blit(self.background, (0, 0))
         self.screen.blit(self.background, (self.background_rect.width, 0))
@@ -231,7 +238,6 @@ if __name__ == '__main__':
     g = Game()
     g.show_start_screen()
     while g.running:
-        g.show_start_screen()
         g.new()
         g.run()
     
