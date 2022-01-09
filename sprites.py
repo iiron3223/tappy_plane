@@ -114,8 +114,8 @@ class Rock(pg.sprite.Sprite):
         if self.up:
             self.image = self.game.spritesheet.load_image(ROCK)
             self.rect = self.image.get_rect()
-            self.rect.bottomleft = self.x, self.y + random.randint(TILESIZE/2, ROCK_VAR)
+            self.rect.bottomleft = self.x, self.y + random.randint(int(TILESIZE/3*2), ROCK_VAR)
         else:
             self.image = self.game.spritesheet.load_image(ROCK_DOWN)
             self.rect = self.image.get_rect()
-            self.rect.topleft = self.x, self.y - random.randint(TILESIZE/2, ROCK_VAR)
+            self.rect.topleft = self.x, self.y - random.randint(int(TILESIZE/3*2), ROCK_VAR)

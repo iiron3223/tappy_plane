@@ -41,9 +41,7 @@ class Game:
         self.player = Player(self, START_POSITION)
         Ground(self)
         Ground(self)
-        Ground(self)
-        Rock(self, (12*TILESIZE, HEIGHT))
-        Rock(self, (12*TILESIZE, 0), False)    
+        Ground(self)  
     
     def run(self):
         # Game loop
@@ -80,6 +78,13 @@ class Game:
             if sprite.rect.right < 0:
                 Ground.spawn = True
                 sprite.kill()
+        
+        # Spawn rocks
+        if len(self.rocks) < ROCKS_NUMBER:
+            x = random.randrange(WIDTH, WIDTH * 2)
+            y = random.choice((0, HEIGHT))
+            up = bool(y)
+            Rock(self, (x, y), up)
             
             
     def events(self): 
