@@ -30,6 +30,8 @@ class Game:
         self.background_rect = self.background.get_rect()
         self.crash_img = self.spritesheet.load_image(CRASH_IMG)
         self.crash_rect = self.crash_img.get_rect()
+        self.dim_screen = pg.Surface(self.screen.get_size()).convert_alpha()
+        self.dim_screen.fill((0, 0, 0, 180))
         self.font = img_dir / FONT
         self.font_thin = img_dir /FONT_THIN
         # Load sound
@@ -61,6 +63,7 @@ class Game:
         Ground(self)
         Ground(self)
         Ground(self) 
+        self.paused = False
     
     def run(self):
         # Game loop
@@ -68,7 +71,8 @@ class Game:
         while self.playing:
             self.dt = self.clock.tick(FPS) / 1000
             self.events()
-            self.update()
+            if not self.paused:
+                self.update()
             if self.playing:
                 self.draw()
     
@@ -138,7 +142,11 @@ class Game:
             # check for closing window 
             if event.type == pg.QUIT:
                 self.quit()
-                
+            if event.type == pg.KEYDOWN:
+                if event.key == pg.K_ESCAPE:
+                    self.quit()
+                if event.key == pg.K_p:
+                    self.paused = not self.paused
     def draw(self):
         # Show FPS
         pg.display.set_caption(f"{int(self.clock.get_fps())} FPS")
@@ -151,6 +159,10 @@ class Game:
         # Draw HUD
         self.draw_text(f"{self.score}", self.font, 32, STEEL_BLUE,
                        20, 20, align="nw")
+        if self.paused:
+            self.screen.blit(self.dim_screen, (0, 0))
+            self.draw_text("Paused", self.font, 100, WHITE, 
+                           WIDTH / 2, HEIGHT /2, align="center")
         pg.display.flip()
         
     def draw_grid(self):
