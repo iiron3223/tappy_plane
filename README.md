@@ -1,7 +1,8 @@
 # Tappy Plane
 ![Game Image](assets/tappy.png)
 ## Description
-After a couple of months of my programming journey, I decided to give game development a try. I used pygame and made **Tappy Plane**, inspired by a popular mobile game. I have made a small design change in the behavior of the plane controlled by the player to better simulate fluid flying motion instead of bird wings flapping.
+In this simple game you control a plane, try to avoid numerous obstacles and collect
+stars. Game is simulating fluid flying motion instead of bird wings flapping.
 
 ## Installation
 To download the game, clone this repository using git or download files manually. Then simply run **main.py** using Python.
