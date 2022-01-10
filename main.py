@@ -1,6 +1,6 @@
 # Tappy Plane Game
 
-import pygame as pg
+import pygame as pg  # type: ignore
 import random
 from pathlib import Path
 from settings import *
@@ -233,7 +233,14 @@ class Game:
             self.playing = False
         self.running = False
     
-    def draw_text(self, text, font_name, size, color, x, y, align="nw"):
+    def draw_text(self, 
+                  text: str, 
+                  font_name: str, 
+                  size: int, 
+                  color: tuple[int, int, int], 
+                  x: int,
+                  y: int, 
+                  align: str="nw"):
         font = pg.font.Font(font_name, size)
         text_surface = font.render(text, True, color)
         text_rect = text_surface.get_rect()

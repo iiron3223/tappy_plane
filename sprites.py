@@ -1,8 +1,9 @@
 from __future__ import annotations
-import pygame as pg
+from pathlib import Path
+import pygame as pg  # type: ignore
 import xml.etree.ElementTree as ET
 import random
-import pytweening as tween
+import pytweening as tween  # type: ignore
 from main import Game
 from settings import *
 
@@ -12,7 +13,7 @@ vector = pg.math.Vector2
 class Spritesheet:
     """Utility class for loading and parsing spritesheets"""
     
-    def __init__(self, spritesheet, xml):
+    def __init__(self, spritesheet: Path, xml: Path):
         self.spritesheet = pg.image.load(spritesheet).convert()
         with open(xml) as f:
             self.root = ET.parse(f).getroot()
@@ -35,7 +36,7 @@ class Spritesheet:
         
 
 class Player(pg.sprite.Sprite):
-    def __init__(self, game: Game, pos: tuple(int, int)):
+    def __init__(self, game: Game, pos: tuple[int, int]):
         self._layer = PLAYER_LAYER
         self.groups = game.all_sprites
         pg.sprite.Sprite.__init__(self, self.groups)
@@ -115,7 +116,7 @@ class Ground(pg.sprite.Sprite):
 
 
 class Rock(pg.sprite.Sprite):
-    def __init__(self, game: Game, pos: tuple(int, int), up: bool = True):
+    def __init__(self, game: Game, pos: tuple[int, int], up: bool = True):
         self._layer = ROCK_LAYER
         self.groups = game.all_sprites, game.obstacles, game.rocks
         pg.sprite.Sprite.__init__(self, self.groups)
@@ -133,7 +134,7 @@ class Rock(pg.sprite.Sprite):
 
 
 class Star(pg.sprite.Sprite):
-    def __init__(self, game: Game, pos: tuple(int, int)):
+    def __init__(self, game: Game, pos: tuple[int, int]):
         self._layer = STAR_LAYER
         self.groups = game.all_sprites, game.stars
         pg.sprite.Sprite.__init__(self, self.groups)
