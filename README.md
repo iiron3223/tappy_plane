@@ -10,6 +10,7 @@ The game requires pygame and pytweening libraries to run (exact versions are lis
 
 ## Usage
 Use **Spacebar** to propel your plane upwards. Try to avoid numerous obstacles and collect as many stars as you can to achieve a high score.
+Use **P** to pause the game.
 
 ## Contact
 If you have any insight, want to ask a question or just say hi, feel free to contact me using iiron@slmail.me
