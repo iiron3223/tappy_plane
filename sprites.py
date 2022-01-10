@@ -19,14 +19,14 @@ class Spritesheet:
             self.root = ET.parse(f).getroot()
     
     def get_image(self, x: int, y: int, width: int, height: int):
-        """Grab an image out of a larger spritesheet"""
+        """Grab an image out of a larger spritesheet using coordinates."""
         image = pg.Surface((width, height))
         image.blit(self.spritesheet, (0, 0), (x, y, width, height))
         image.set_colorkey(BLACK)
         return image.convert_alpha()
     
     def load_image(self, name: str):
-        """Load an sprite image from a spritesheet."""
+        """Load an sprite image from a spritesheet using name specified in xml."""
         for c in self.root:
             if c.attrib['name'] == name:
                 return self.get_image(int(c.attrib['x']), 
@@ -52,8 +52,6 @@ class Player(pg.sprite.Sprite):
         self.rot = 0
         self.last_flap = 0
         
-        
-        
     def get_keys(self):
         keys = pg.key.get_pressed()
         if keys[pg.K_SPACE]:
@@ -70,6 +68,7 @@ class Player(pg.sprite.Sprite):
             self.current_frame = (self.current_frame + 1) % len(PLAYER_IMAGES)
             center = self.rect.center
             self.image = self.game.player_anim[self.current_frame]
+            # Apply rotation towards direction of plane movement
             vel = vector(self.vel.x * 100, self.vel.y * 0.005)
             self.rot = vel.angle_to(vector(1, 0))
             self.image = pg.transform.rotate(self.image, self.rot)
@@ -78,23 +77,22 @@ class Player(pg.sprite.Sprite):
     def update(self):
         self.get_keys()
         self.animate()
-        self.vel.y += self.acc.y * self.game.dt
+        self.vel.y += self.acc.y * self.game.dt  # Apply pulling force of gravity
         self.vel.x = HORIZONTAL_SPEED * self.game.dt
         if self.pos.y < 0:
             self.vel.y += 3* self.acc.y * self.game.dt
         self.rect = self.image.get_rect()
-        self.pos += self.vel * self.game.dt + 0.5 * self.acc * self.game.dt ** 2
+        self.pos += self.vel * self.game.dt + 0.5 * self.acc * self.game.dt ** 2  # Equation of motion
         self.rect.center = self.pos
 
     def flap(self):
         """Apply upward force to player."""
-        #if (now := pg.time.get_ticks()) - self.last_flap > FLAP_INTERVAL:
-        #    self.last_flap = now
         if self.pos.y > 0:
             self.vel.y += FLAP_POWER
     
 
 class Ground(pg.sprite.Sprite):
+    # Keep coordinates at which to spawn the next ground instance
     next = (0, HEIGHT)
     spawn = False
     
@@ -111,8 +109,9 @@ class Ground(pg.sprite.Sprite):
     
     @classmethod
     def reset(cls):
+        """Set class atributes to default ones. """
         cls.next = (0, HEIGHT)
-        spawn = False
+        cls.spawn = False
 
 
 class Rock(pg.sprite.Sprite):

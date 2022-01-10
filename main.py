@@ -149,7 +149,7 @@ class Game:
                     self.paused = not self.paused
     def draw(self):
         # Show FPS
-        pg.display.set_caption(f"{int(self.clock.get_fps())} FPS")
+        # pg.display.set_caption(f"{int(self.clock.get_fps())} FPS")
         # Game loop - draw
         self.screen.fill(BGCOLOR) 
         self.screen.blit(self.background, (0, 0))
