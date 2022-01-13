@@ -1,5 +1,5 @@
 # Tappy Plane
-![Game Image](assets/tappy.png)
+![Game Image](assets/tp.gif)
 ## Description
 In this simple game you control a plane, try to avoid numerous obstacles and collect
 stars. Game is simulating fluid flying motion instead of bird wings flapping.
