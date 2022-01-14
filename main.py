@@ -32,8 +32,9 @@ class Game:
         self.crash_rect = self.crash_img.get_rect()
         self.dim_screen = pg.Surface(self.screen.get_size()).convert_alpha()
         self.dim_screen.fill((0, 0, 0, 180))
-        self.font = img_dir / FONT
-        self.font_thin = img_dir /FONT_THIN
+        self.font_big = pg.font.Font(img_dir / FONT, 100)
+        self.font_med = pg.font.Font(img_dir / FONT, 42)
+        self.font_thin = pg.font.Font(img_dir /FONT_THIN, 32)
         # Load sound
         self.snd_dir = self.game_dir / 'snd'
         self.propeler_snd = pg.mixer.Sound(self.snd_dir / PROPELER_SOUND)
@@ -157,11 +158,11 @@ class Game:
         self.all_sprites.draw(self.screen)
         #self.draw_grid()
         # Draw HUD
-        self.draw_text(f"{self.score}", self.font, 32, STEEL_BLUE,
+        self.draw_text(f"{self.score}", self.font_thin, STEEL_BLUE,
                        20, 20, align="nw")
         if self.paused:
             self.screen.blit(self.dim_screen, (0, 0))
-            self.draw_text("Paused", self.font, 100, pg.Color("white"),
+            self.draw_text("Paused", self.font_big, pg.Color("white"),
                            WIDTH / 2, HEIGHT /2, align="center")
         pg.display.flip()
         
@@ -179,11 +180,11 @@ class Game:
         self.screen.fill(BGCOLOR)
         self.screen.blit(self.background, (0, 0))
         self.screen.blit(self.background, (self.background_rect.width, 0))
-        self.draw_text(TITLE, self.font, 105, DARK_BLUE, 
+        self.draw_text(TITLE, self.font_big, DARK_BLUE, 
                        WIDTH / 2, HEIGHT / 2, align="s")
-        self.draw_text("Press any key to start", self.font_thin, 32, STEEL_BLUE,
+        self.draw_text("Press any key to start", self.font_thin, STEEL_BLUE,
                         WIDTH / 2, HEIGHT * 3 / 4, align="s")
-        self.draw_text("Tap space to fly", self.font_thin, 32, STEEL_BLUE,
+        self.draw_text("Tap space to fly", self.font_thin, STEEL_BLUE,
                         WIDTH / 2, HEIGHT * 5 / 6, align="s")
         pg.display.flip()
         self.wait_for_key()
@@ -196,22 +197,22 @@ class Game:
         self.screen.fill(BGCOLOR)
         self.screen.blit(self.background, (0, 0))
         self.screen.blit(self.background, (self.background_rect.width, 0))
-        self.draw_text("GAME OVER", self.font, 105, DARK_BLUE, 
+        self.draw_text("GAME OVER", self.font_big, DARK_BLUE, 
                        WIDTH / 2, HEIGHT / 2, align="s")
         if self.score <= int(self.highscore):
-            self.draw_text(f"YOUR SCORE: {self.score}", self.font, 48, DARK_BLUE, 
+            self.draw_text(f"YOUR SCORE: {self.score}", self.font_med, DARK_BLUE, 
                         WIDTH / 2, HEIGHT * 3 / 5, align="s")
-            self.draw_text(f"Highscore: {self.highscore}", self.font, 32, DARK_BLUE, 
+            self.draw_text(f"Highscore: {self.highscore}", self.font_thin, DARK_BLUE, 
                         WIDTH / 2, HEIGHT * 5 / 7, align="s")
         else:
-            self.draw_text(f"NEW HIGHSCORE! {self.score}", self.font, 48, DARK_BLUE, 
+            self.draw_text(f"NEW HIGHSCORE! {self.score}", self.font_med, DARK_BLUE, 
                         WIDTH / 2, HEIGHT * 3 / 5, align="s")
-            self.draw_text(f" Previous Highscore: {self.highscore}", self.font, 32, DARK_BLUE, 
+            self.draw_text(f" Previous Highscore: {self.highscore}", self.font_thin, DARK_BLUE, 
                         WIDTH / 2, HEIGHT * 5 / 7, align="s")
             self.highscore = str(self.score)
             with open(self.game_dir / SCORE, 'w') as f:
                 f.write(self.highscore)
-        self.draw_text("Press any key to restart", self.font_thin, 32, STEEL_BLUE,
+        self.draw_text("Press any key to restart", self.font_thin, STEEL_BLUE,
                        WIDTH / 2, HEIGHT * 7 / 8, align="s")
         pg.display.flip()
         self.wait_for_key()
@@ -235,32 +236,30 @@ class Game:
     
     def draw_text(self, 
                   text: str, 
-                  font_name: str, 
-                  size: int, 
+                  font: pg.font.Font, 
                   color: tuple[int, int, int], 
                   x: int,
                   y: int, 
                   align: str="nw"):
-        font = pg.font.Font(font_name, size)
         text_surface = font.render(text, True, color)
         text_rect = text_surface.get_rect()
         if align == "nw":
             text_rect.topleft = (x, y)
-        if align == "ne":
+        elif align == "ne":
             text_rect.topright = (x, y)
-        if align == "sw":
+        elif align == "sw":
             text_rect.bottomleft = (x, y)
-        if align == "se":
+        elif align == "se":
             text_rect.bottomright = (x, y)
-        if align == "n":
+        elif align == "n":
             text_rect.midtop = (x, y)
-        if align == "s":
+        elif align == "s":
             text_rect.midbottom = (x, y)
-        if align == "e":
+        elif align == "e":
             text_rect.midright = (x, y)
-        if align == "w":
+        elif align == "w":
             text_rect.midleft = (x, y)
-        if align == "center":
+        elif align == "center":
             text_rect.center = (x, y)
         self.screen.blit(text_surface, text_rect)
         
