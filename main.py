@@ -151,7 +151,7 @@ class Game:
         # Show FPS
         # pg.display.set_caption(f"{int(self.clock.get_fps())} FPS")
         # Game loop - draw
-        self.screen.fill(BGCOLOR) 
+        self.screen.fill(pg.Color("grey30")) 
         self.screen.blit(self.background, (0, 0))
         self.screen.blit(self.background, (self.background_rect.width, 0))
         self.all_sprites.draw(self.screen)
@@ -161,16 +161,16 @@ class Game:
                        20, 20, align="nw")
         if self.paused:
             self.screen.blit(self.dim_screen, (0, 0))
-            self.draw_text("Paused", self.font, 100, WHITE, 
+            self.draw_text("Paused", self.font, 100, pg.Color("white"),
                            WIDTH / 2, HEIGHT /2, align="center")
         pg.display.flip()
         
     def draw_grid(self):
         """Draw grid using TILESIZE on the screen."""
         for x in range(0, WIDTH, TILESIZE):
-            pg.draw.line(self.screen, LIGHTGREY, (x, 0), (x, HEIGHT), 1)
+            pg.draw.line(self.screen, pg.Color("gray60"), (x, 0), (x, HEIGHT), 1)
         for y in range(0, HEIGHT, TILESIZE):
-            pg.draw.line(self.screen, LIGHTGREY, (0, y), (WIDTH, y), 1)
+            pg.draw.line(self.screen, pg.Color("gray60"), (0, y), (WIDTH, y), 1)
             
     def show_start_screen(self):
         pg.mixer.music.load(self.snd_dir / MENU_MUSIC)

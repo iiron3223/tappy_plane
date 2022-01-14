@@ -22,7 +22,7 @@ class Spritesheet:
         """Grab an image out of a larger spritesheet using coordinates."""
         image = pg.Surface((width, height))
         image.blit(self.spritesheet, (0, 0), (x, y, width, height))
-        image.set_colorkey(BLACK)
+        image.set_colorkey(pg.Color("black"))
         return image.convert_alpha()
     
     def load_image(self, name: str):

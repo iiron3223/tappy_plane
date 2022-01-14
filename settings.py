@@ -1,14 +1,7 @@
+import pygame as pg
+
 # Colors
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-DARKGREY = (40, 40, 40)
-LIGHTGREY = (100, 100, 100)
-RED = (255, 0, 0)
-GREEN = (0, 255, 0)
-BLUE = (0, 0, 255)
-YELLOW = (255, 255, 0)
-CYAN = (0, 255, 255)
-MAGENTA = (255, 0, 255)
+BGCOLOR = pg.Color("grey30")
 STEEL_BLUE = (70, 130, 180)
 DARK_BLUE = (74, 88, 112)
 
@@ -18,7 +11,6 @@ TITLE = "Tappy Plane"
 WIDTH = 1024  # 16 x 64 or 32 x 32 or 64 x 16 
 HEIGHT = 480  # 32 x 16 or 32 x 16 or 64 x 8
 FPS = 60
-BGCOLOR = DARKGREY
 SPRITESHEET_PNG = 'sheet.png'
 SPRITESHEET_XML = 'sheet.xml'
 BACKGROUND_IMG = 'background.png'
