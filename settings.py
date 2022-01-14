@@ -1,5 +1,3 @@
-import pygame as pg
-
 # Colors
 BGCOLOR = "grey30"
 STEEL_BLUE = "steelblue3"
