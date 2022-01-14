@@ -1,9 +1,9 @@
 import pygame as pg
 
 # Colors
-BGCOLOR = pg.Color("grey30")
-STEEL_BLUE = (70, 130, 180)
-DARK_BLUE = (74, 88, 112)
+BGCOLOR = "grey30"
+STEEL_BLUE = "steelblue3"
+DARK_BLUE = "skyblue4"
 
 
 # Game settings
