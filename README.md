@@ -13,7 +13,7 @@ Use **Spacebar** to propel your plane upwards. Try to avoid numerous obstacles a
 Use **P** to pause the game.
 
 ## Contact
-If you have any insight, want to ask a question or just say hi, feel free to contact me using iiron@slmail.me
+If you have any insight, want to ask a question or just say hi, feel free to contact me using tappy_plane.decomposer@8alias.com
 
 ## Credits:
 Special thanks to Chris Bradfield from [KidsCanCode](https://www.youtube.com/c/KidscancodeOrg) for creating awesome tutorials.
